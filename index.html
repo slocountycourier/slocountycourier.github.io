@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLO County Courier | Same-Day Delivery · San Luis Obispo County</title>
+  <meta name="description" content="Reliable, insured same-day courier service across San Luis Obispo County. Documents, parcels, apostille facilitation, and B2B contract routes. Call (805) 670-1565." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:     #1A2B45;
+      --navy-mid: #223355;
+      --gold:     #C8973A;
+      --gold-lt:  #E2B86A;
+      --cream:    #F9F6F0;
+      --white:    #FFFFFF;
+      --gray:     #F0EDE8;
+      --text:     #1E1E2E;
+      --muted:    #6B7280;
+      --border:   #DDD8D0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .nav-brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-lt) !important; color: var(--navy) !important; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 80% 50%, rgba(200,151,58,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 80% at 10% 80%, rgba(200,151,58,0.07) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 720px;
+      padding: 5rem 2rem 5rem 8vw;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,151,58,0.4);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      opacity: 0; animation: fadeUp 0.7s 0.25s forwards;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.7s 0.55s forwards;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(200,151,58,0.1); }
+
+    .hero-phone {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
+    }
+    .hero-phone a { color: var(--gold-lt); text-decoration: none; font-weight: 600; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--gold);
+      padding: 0.9rem 2rem;
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+    .trust-item {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .trust-item::before { content: '✓'; font-size: 0.9rem; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 580px;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      background: var(--cream);
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { box-shadow: 0 8px 32px rgba(26,43,69,0.1); transform: translateY(-2px); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .service-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .service-price {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    /* ── RATES ── */
+    #rates { background: var(--navy); }
+    #rates .section-title { color: var(--white); }
+    #rates .section-sub { color: rgba(255,255,255,0.55); }
+    .rates-table {
+      width: 100%; border-collapse: collapse;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .rates-table th {
+      background: rgba(200,151,58,0.2);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(200,151,58,0.3);
+    }
+    .rates-table td {
+      padding: 0.9rem 1.25rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .rates-table tr:last-child td { border-bottom: none; }
+    .rates-table tr:hover td { background: rgba(255,255,255,0.03); }
+    .rate-amount { font-weight: 700; color: var(--white); }
+    .rates-note {
+      margin-top: 1.25rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+    .rates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .rates-block-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(200,151,58,0.3);
+    }
+
+    /* ── APOSTILLE ── */
+    #apostille { background: var(--gray); }
+    .apostille-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      max-width: 800px;
+    }
+    .apostille-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .apostille-row:last-child { border-bottom: none; }
+    .apostille-label { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+    .apostille-note { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+    .apostille-price { font-weight: 700; color: var(--gold); font-size: 1rem; white-space: nowrap; }
+
+    /* ── COVERAGE ── */
+    #coverage { background: var(--white); }
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .coverage-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .coverage-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .coverage-name { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
+    .coverage-rate { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── FORM ── */
+    #request { background: var(--navy); }
+    #request .section-title { color: var(--white); }
+    #request .section-sub { color: rgba(255,255,255,0.55); }
+    .form-wrap {
+      max-width: 680px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 2.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.45rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--navy); color: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 5px;
+      padding: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111822;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-info {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.9;
+    }
+    .footer-info a { color: var(--gold-lt); text-decoration: none; }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: 1.5rem auto;
+      max-width: 400px;
+    }
+    .footer-legal { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1.25rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-content { padding: 4rem 1.5rem; }
+      .rates-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .trust-bar { gap: 1.25rem; }
+      .rates-table { font-size: 0.82rem; }
+      .rates-table th, .rates-table td { padding: 0.75rem 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">SLO <span>County</span> Courier</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#rates">Rates</a></li>
+    <li><a href="#apostille">Apostille</a></li>
+    <li><a href="#coverage">Coverage</a></li>
+    <li><a href="#request" class="nav-cta">Request a Run</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">San Luis Obispo County</div>
+    <h1 class="hero-title">
+      Same-Day Courier<br/>You Can <em>Count On</em>
+    </h1>
+    <p class="hero-sub">
+      Reliable, fully insured document and parcel delivery across SLO County — from Morro Bay to Paso Robles. Professional. On time. Every run.
+    </p>
+    <div class="hero-actions">
+      <a href="#request" class="btn-primary">Request a Delivery</a>
+      <a href="#rates" class="btn-outline">View Rates</a>
+    </div>
+    <p class="hero-phone">Questions? Call us: <a href="tel:8056701565">(805) 670-1565</a></p>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">Fully Insured</div>
+  <div class="trust-item">Same-Day Dispatch</div>
+  <div class="trust-item">Morro Bay Based</div>
+  <div class="trust-item">B2B Contract Routes</div>
+  <div class="trust-item">Apostille Facilitation</div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Courier Services Built for the Central Coast</h2>
+    <p class="section-sub">From routine business document runs to time-sensitive legal deliveries — we handle it professionally every time.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <div class="service-name">Standard Delivery</div>
+        <div class="service-desc">Business documents, office supplies, and small parcels delivered reliably across the county.</div>
+        <div class="service-price">From $20.00 base</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <div class="service-name">Rush / Priority</div>
+        <div class="service-desc">Immediate dispatch, direct route, no stops in between. When it has to be there now.</div>
+        <div class="service-price">From $45.00 base</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌙</div>
+        <div class="service-name">After-Hours & Weekends</div>
+        <div class="service-desc">Evenings after 6 PM, weekends, and holidays. We're available when most aren't.</div>
+        <div class="service-price">From $65.00 base</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <div class="service-name">Contract Routes</div>
+        <div class="service-desc">Recurring daily or weekly multi-stop runs for law firms, banks, medical offices, and more.</div>
+        <div class="service-price">From $32.50/stop/day</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <div class="service-name">Bulk Parcel</div>
+        <div class="service-desc">Multiple boxes or bags up to full trunk capacity. All cargo must fit within a sedan — no freight.</div>
+        <div class="service-price">From $99.00 base</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏛️</div>
+        <div class="service-name">Apostille Facilitation</div>
+        <div class="service-desc">Hand-carry to the CA Secretary of State. Never mailed. Scheduled batch runs and rush trips available.</div>
+        <div class="service-price">From $250.00 (batch run)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RATES -->
+<section id="rates">
+  <div class="section-inner">
+    <div class="section-label">Transparent Pricing</div>
+    <h2 class="section-title">Straightforward Rates</h2>
+    <p class="section-sub">No hidden fees. Base rates cover up to 5 lbs and 5 miles from SLO central. Mileage and weight adjustments applied beyond that.</p>
+
+    <div class="rates-grid">
+      <div>
+        <div class="rates-block-title">On-Demand Deliveries</div>
+        <table class="rates-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Base Rate</th>
+              <th>Add'l / lb</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Standard</td>
+              <td><span class="rate-amount">$20.00</span></td>
+              <td>$0.50</td>
+            </tr>
+            <tr>
+              <td>Rush / Priority</td>
+              <td><span class="rate-amount">$45.00</span></td>
+              <td>$0.50</td>
+            </tr>
+            <tr>
+              <td>After-Hours / Weekend</td>
+              <td><span class="rate-amount">$65.00</span></td>
+              <td>$0.75</td>
+            </tr>
+            <tr>
+              <td>Bulk Parcel</td>
+              <td><span class="rate-amount">$99.00+</span></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="rates-note">Wait time: first 10 min free, then $1.00/min. Wrong address reroute: $15.00 flat + mileage.</p>
+      </div>
+
+      <div>
+        <div class="rates-block-title">Regional Flat Rates (from SLO)</div>
+        <table class="rates-table">
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Local Coastal (Morro Bay / Los Osos / Pismo)</td>
+              <td><span class="rate-amount">$45–$60</span></td>
+            </tr>
+            <tr>
+              <td>Paso Robles / North County</td>
+              <td><span class="rate-amount">$85–$95</span></td>
+            </tr>
+            <tr>
+              <td>Atascadero</td>
+              <td><span class="rate-amount">$115+</span></td>
+            </tr>
+            <tr>
+              <td>Santa Maria</td>
+              <td><span class="rate-amount">$175+</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="rates-note">Fuel surcharges may apply on long-distance routes based on CA weekly averages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APOSTILLE -->
+<section id="apostille">
+  <div class="section-inner">
+    <div class="section-label">Document Authentication</div>
+    <h2 class="section-title">Apostille Facilitation</h2>
+    <p class="section-sub">Hand-carried to the California Secretary of State — never mailed. State &amp; counter fees ($26/doc) passed through at cost with zero markup. All fees prepaid.</p>
+    <div class="apostille-box">
+      <div class="apostille-row">
+        <div>
+          <div class="apostille-label">State &amp; Counter Fees</div>
+          <div class="apostille-note">Passed through at cost — no markup</div>
+        </div>
+        <div class="apostille-price">$26.00 / doc</div>
+      </div>
+      <div class="apostille-row">
+        <div>
+          <div class="apostille-label">Scheduled Batch Run — 2nd &amp; 4th Wednesday</div>
+          <div class="apostille-note">Docs due Tuesday by 4:00 PM · Wednesday corridor pickups available on request</div>
+        </div>
+        <div class="apostille-price">$250 first + $100 ea. add'l</div>
+      </div>
+      <div class="apostille-row">
+        <div>
+          <div class="apostille-label">Rush Trip — Sacramento</div>
+          <div class="apostille-note">When your timeline can't wait for the next batch run</div>
+        </div>
+        <div class="apostille-price">$600 first + $150 ea. add'l</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage">
+  <div class="section-inner">
+    <div class="section-label">Service Area</div>
+    <h2 class="section-title">Where We Run</h2>
+    <p class="section-sub">Based in Morro Bay. Serving all of San Luis Obispo County south to Santa Maria, and beyond on request.</p>
+    <div class="coverage-grid">
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Morro Bay</div><div class="coverage-rate">Home base</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">San Luis Obispo</div><div class="coverage-rate">$45–$60 flat</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Los Osos</div><div class="coverage-rate">$45–$60 flat</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Pismo Beach</div><div class="coverage-rate">$45–$60 flat</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Atascadero</div><div class="coverage-rate">$115+ flat</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Paso Robles</div><div class="coverage-rate">$85–$95 flat</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Santa Maria</div><div class="coverage-rate">$175+ flat</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Guadalupe</div><div class="coverage-rate">$175+ flat</div></div></div>
+      <div class="coverage-card"><div class="coverage-dot"></div><div><div class="coverage-name">Sacramento</div><div class="coverage-rate">Apostille runs</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST FORM -->
+<section id="request">
+  <div class="section-inner">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Request a Delivery</h2>
+    <p class="section-sub">Fill out the form below and we'll follow up to confirm details and pricing. For urgent runs, call us directly at <a href="tel:8056701565" style="color:var(--gold-lt)">(805) 670-1565</a>.</p>
+    <div class="form-wrap">
+      <div id="formArea">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="fname" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="fphone" placeholder="(805) 555-0100" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="femail" placeholder="jane@company.com" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Service Needed *</label>
+            <select id="fservice">
+              <option value="">Select a service...</option>
+              <option>Standard Delivery</option>
+              <option>Rush / Priority</option>
+              <option>After-Hours / Weekend</option>
+              <option>Bulk Parcel</option>
+              <option>Contract Route Inquiry</option>
+              <option>Apostille Facilitation</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" id="fdate" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pickup Location *</label>
+          <input type="text" id="fpickup" placeholder="Address or city" required />
+        </div>
+        <div class="form-group">
+          <label>Drop-off Location *</label>
+          <input type="text" id="fdropoff" placeholder="Address or city" required />
+        </div>
+        <div class="form-group">
+          <label>Additional Details</label>
+          <textarea id="fnotes" placeholder="Package size, special instructions, time constraints..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Submit Request</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        ✓ Request received! We'll be in touch shortly to confirm your run.<br/>
+        <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);font-weight:400">For urgent needs call <a href="tel:8056701565" style="color:var(--gold-lt)">(805) 670-1565</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">SLO <span>County</span> Courier</div>
+  <hr class="footer-divider" />
+  <div class="footer-info">
+    Morro Bay, CA &nbsp;·&nbsp; Serving all of San Luis Obispo County<br/>
+    <a href="tel:8056701565">(805) 670-1565</a> &nbsp;·&nbsp; <a href="mailto:info@slocountycourier.com">info@slocountycourier.com</a><br/>
+    www.slocountycourier.com
+  </div>
+  <hr class="footer-divider" />
+  <div class="footer-legal">© 2026 SLO County Courier · Rates subject to change · All deliveries fully insured · Vehicle capacity limited to sedan cargo</div>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  function submitForm() {
+    const required = ['fname','fphone','fservice','fpickup','fdropoff'];
+    let valid = true;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        el.style.borderColor = '#e05c5c';
+        valid = false;
+      } else {
+        el.style.borderColor = '';
+      }
+    });
+    if (!valid) return;
+
+    // Collect form data
+    const data = {
+      name:     document.getElementById('fname').value,
+      phone:    document.getElementById('fphone').value,
+      email:    document.getElementById('femail').value,
+      service:  document.getElementById('fservice').value,
+      date:     document.getElementById('fdate').value,
+      pickup:   document.getElementById('fpickup').value,
+      dropoff:  document.getElementById('fdropoff').value,
+      notes:    document.getElementById('fnotes').value,
+    };
+
+    // TODO: Replace with your form backend (Formspree, EmailJS, Google Forms, etc.)
+    console.log('Form submission:', data);
+
+    document.getElementById('formArea').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = target.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+        document.getElementById('navLinks').classList.remove('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>
